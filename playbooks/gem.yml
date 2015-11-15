@@ -1,0 +1,10 @@
+---
+- name: Update all gem installed packages
+  sudo: yes
+  hosts: all
+  tasks:
+    - include: is_installed.yml executable=gem
+
+    - name: Update all gem installed Packages
+      command: gem update
+      when: is_installed.rc == 0

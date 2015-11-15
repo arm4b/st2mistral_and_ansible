@@ -1,0 +1,7 @@
+---
+- name: Check if package manager {{ executable }} is installed
+  sudo: yes
+  shell: command -V {{ executable }}
+  register: is_installed
+  failed_when: no
+  changed_when: no

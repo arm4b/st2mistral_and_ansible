@@ -1,0 +1,10 @@
+---
+- name: Update all npm installed packages
+  sudo: yes
+  hosts: all
+  tasks:
+    - include: is_installed.yml executable=npm
+
+    - name: Update all npm installed Packages
+      command: npm update -g
+      when: is_installed.rc == 0

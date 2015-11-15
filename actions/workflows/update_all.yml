@@ -1,0 +1,59 @@
+version: '2.0'
+
+st2mistral-and-ansible.update_all:
+    description: >
+        Workflow to update all gem & npm & pip installed packages on remote machines in parallel,
+        1-3 (depending on passed list) Ansible playbooks are executed simultaneously:
+          * gem.yml
+          * npm.yml
+          * pip.yml
+        Result from each parallel task is posted in Slack.
+    type: direct
+    input:
+        - package_managers
+    output:
+        end_state: <% $ %>
+    tasks:
+        parallel_start:
+            action: core.local
+            input:
+                cmd: "echo Updating all packages for <% $.package_managers %>"
+            publish:
+                playbook_dir: /opt/stackstorm/packs/st2mistral-and-ansible/playbooks/
+                status_message: "Updating all packages for <% $.package_managers %>"
+            on-success:
+                - slack_message
+                - gem: <% 'gem' in $.package_managers %>
+                - npm: <% 'npm' in $.package_managers %>
+                - pip: <% 'pip' in $.package_managers %>
+        gem:
+            action: ansible.playbook
+            input:
+                playbook: gem.yml
+                cwd: <% $.playbook_dir %>
+            publish:
+                status_message: "<% $.gem.stdout %> <% $.gem.stderr %>"
+            on-complete:
+                - slack_message
+        npm:
+            action: ansible.playbook
+            input:
+                playbook: npm.yml
+                cwd: <% $.playbook_dir %>
+            publish:
+                status_message: "<% $.npm.stdout %> <% $.npm.stderr %>"
+            on-complete:
+                - slack_message
+        pip:
+            action: ansible.playbook
+            input:
+                playbook: pip.yml
+                cwd: <% $.playbook_dir %>
+            publish:
+                status_message: "<% $.pip.stdout %> <% $.pip.stderr %>"
+            on-complete:
+                - slack_message
+        slack_message:
+            action: slack.post_message
+            input:
+                message: "```<% $.status_message %>```"

@@ -1,0 +1,14 @@
+---
+name: install_parallel
+description: Update all gem & npm & pip installed packages on remote machines in parallel
+runner_type: mistral-v2
+entry_point: workflows/update_all.yml
+enabled: true
+parameters:
+  package_managers:
+    description: Target package manager(s) which libraries/packages we should update
+    type: array
+    default:
+      - gem
+      - npm
+      - pip

@@ -1,0 +1,10 @@
+---
+- name: Update all pip packages
+  sudo: yes
+  hosts: all
+  tasks:
+    - include: is_installed.yml executable=pip
+
+    - name: Update all pip installed Packages
+      shell: pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+      when: is_installed.rc == 0
