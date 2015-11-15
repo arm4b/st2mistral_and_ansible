@@ -1,6 +1,11 @@
 # Mistral demo Workflow with Ansible, running on StackStorm
 
-Example of StackStorm & Mistral Workflow running 3 separate Ansible playbooks in parallel and posting results to Slack.
+Example of StackStorm & Mistral Workflow running 3 separate Ansible playbooks in parallel and posting results from each execution to Slack.
+
+> There is some way to run tasks inside Ansible playbook in parallel via [async-poll](http://docs.ansible.com/ansible/playbooks_async.html),
+ but it doesn't give such freedom and flexibility.
+ 
+ So here (in best traditions of biologists :biohazard_sign: :) we crossed two different tools (Ansible & Mistral) and got new useful features. 
 
 
 ## Installation
