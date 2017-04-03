@@ -1,0 +1,14 @@
+---
+ref: st2mistral_and_ansible
+name : st2mistral_and_ansible
+description : st2 content pack with example of StackStorm & Mistral Workflow running 3 separate Ansible playbooks in parallel and posting results from each execution to Slack
+keywords:
+  - ansible
+  - mistral
+  - stackstorm
+  - demo
+  - parallel
+  - workflows
+version : 0.2.0
+author : armab
+email: info@stackstorm.com

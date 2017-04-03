@@ -1,5 +1,5 @@
 ---
-name: install_parallel
+name: update_all
 description: Update all gem & npm & pip installed packages on remote machines in parallel
 runner_type: mistral-v2
 entry_point: workflows/update_all.yml

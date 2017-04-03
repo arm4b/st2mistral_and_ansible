@@ -1,6 +1,6 @@
 ---
 name: chatops.update_all
-action_ref: st2mistral-and-ansible.update_all
+action_ref: st2mistral_and_ansible.update_all
 description: Update all installed libraries for listed package managers in parallel
 formats:
   - "update all for {{package_managers}}"
