@@ -12,12 +12,12 @@ Example of StackStorm & Mistral Workflow running 3 separate Ansible playbooks in
 
 Install StackStorm Ansible & Slack integration packs:
 ```sh
-st2 run packs.install packs=ansible,slack
+st2 pack install ansible slack
 ```
 
 Install this pack with Demo Mistral workflow and Ansible playbooks in it:
 ```sh
-st2 run packs.install packs=st2mistral-and-ansible repo_url=armab/st2mistral-and-ansible
+st2 pack install https://github.com/armab/st2mistral-and-ansible
 ```
 
 
@@ -27,12 +27,13 @@ st2 run packs.install packs=st2mistral-and-ansible repo_url=armab/st2mistral-and
 * `/etc/ansible/ansible.cfg`
 * `/etc/ansible/hosts`
 
-2.) Add Slack credentials in `/opt/stackstorm/packs/slack/config.yml` section: `post_message_action`
+2.) Configure Slack
+Run `st2 pack config slack` or add Slack credentials in `/opt/stackstorm/configs/slack.yaml` section: `post_message_action`
 
 ## Example commands:
 ```sh
-st2 run st2mistral-and-ansible.update_all package_managers=pip
-st2 run st2mistral-and-ansible.update_all package_managers=gem,npm,pip
+st2 run st2mistral_and_ansible.update_all package_managers=pip
+st2 run st2mistral_and_ansible.update_all package_managers=gem,npm,pip
 ```
 
 
