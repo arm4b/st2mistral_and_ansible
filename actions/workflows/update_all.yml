@@ -1,6 +1,6 @@
 version: '2.0'
 
-st2mistral-and-ansible.update_all:
+st2mistral_and_ansible.update_all:
     description: >
         Workflow to update all gem & npm & pip installed packages on remote machines in parallel,
         1-3 (depending on passed list) Ansible playbooks are executed simultaneously:
