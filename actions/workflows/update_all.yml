@@ -19,7 +19,7 @@ st2mistral_and_ansible.update_all:
             input:
                 cmd: "echo Updating all packages for <% $.package_managers %>"
             publish:
-                playbook_dir: /opt/stackstorm/packs/st2mistral-and-ansible/playbooks/
+                playbook_dir: /opt/stackstorm/packs/st2mistral_and_ansible/playbooks/
                 status_message: "Updating all packages for <% $.package_managers %>"
             on-success:
                 - slack_message
