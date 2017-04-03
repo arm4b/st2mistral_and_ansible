@@ -17,7 +17,7 @@ st2 pack install ansible slack
 
 Install this pack with Demo Mistral workflow and Ansible playbooks in it:
 ```sh
-st2 pack install https://github.com/armab/st2mistral-and-ansible
+st2 pack install https://github.com/armab/st2mistral_and_ansible
 ```
 
 
